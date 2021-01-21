@@ -15,10 +15,9 @@ import com.qugengting.view.flowlayout.TagFlowLayout;
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {
-    private String[] mVals = new String[]{"a@qq.com", "b@qq.com", "c@126.com", "d@hotmail.com", "e@foxmail.com"};
+    private final String[] mVals = new String[]{"a@qq.com", "b@qq.com", "c@126.com", "d@hotmail.com", "e@foxmail.com"};
     private static final String KEY_DATA_STORE = "key_data";
     private LayoutInflater mInflater;
-    private ImageButton mImageButtonAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +28,8 @@ public class MainActivity extends Activity {
         TagFlowLayout flowLayout = (TagFlowLayout) findViewById(R.id.id_flowlayout);
         flowLayout.setAttachLabel(true);//设置是否需要添加标签,默认添加
         flowLayout.setAdapter(adapter);
-        mImageButtonAdd = (ImageButton) findViewById(R.id.ib_add);
-        mImageButtonAdd.setOnClickListener(new View.OnClickListener() {
+        ImageButton ibAdd = (ImageButton) findViewById(R.id.ib_add);
+        ibAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 adapter.add("addI@sina.com");
@@ -41,7 +40,7 @@ public class MainActivity extends Activity {
         });
     }
 
-    private TagAdapter adapter = new TagAdapter(mVals) {
+    private final TagAdapter adapter = new TagAdapter(mVals) {
         @Override
         public View getView(FlowLayout parent, int position, String s) {
             TextView tv = (TextView) mInflater.inflate(R.layout.tv_item, parent, false);
